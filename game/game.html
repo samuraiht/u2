@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>バトルゲーム - JavaScript</title>
+<script>
+//1:グローバル変数や定数を用意する
+let enemy = 10, maxdagame = 10, nige = false;
+//2:枠組みを作る while(true) { }
+while(true) {
+//5: とりあえず手順通りに作っていく
+	const command = prompt('敵が現れた！（【1】攻撃　【2】逃げる）');
+//6: コマンドは1か2か他(入力ミス) if…なのかswitchなのか
+	switch(command) {
+		case '1': case '１'://攻撃
+//10: 後はここだけ
+			const damage = Math.floor(Math.random() * maxdagame);//ダメージ値
+			console.log(damage + "ポイントのダメージ");
+			enemy -= damage;
+			if(enemy < 0) enemy = 0;
+			console.log("敵の体力は残り" + enemy + "です");
+			break;
+		case '2': case '２'://逃げる
+			nige = true;//8: 逃げた判定にする
+			break;
+		default:
+			alert('半角数字で1か2を入力してください');
+			continue;
+	}
+//7: 逃げたときのメッセージ
+	if(nige) {//9: 逃げた判定のときtrue
+		console.log("無事逃げました");
+		break;
+	}
+//4: 敵を倒す＝enemyが0以下、簡単そうなのでこれも先に作成
+	if(enemy <= 0) {
+		console.log("敵を倒した！");
+		break;
+	}
+}
+//3: 簡単なところから
+console.log('ゲーム終了');
+</script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+let obj = {
+	'free_plan': {
+		'tokyo': { 'name': '山田太郎', 'age': 30 },
+		'osaka': { 'name': '田中俊哉', 'age': 40 }
+	},
+	'standard_plan': {
+		'tokyo': { 'name': '伊藤大輔', 'age': 28 },
+		'osaka': { 'name': '木村涼子', 'age': 23 }
+	}
+};
+
+let plan = [
+	{ 'type' : 1 },
+	{ 'type' : 2 },
+	{ 'type' : 3 }
+];
+
+for(let i = 0; i < plan.length; ++i) {
+	obj['free_plan' + (i + 1)] = plan[i];
+}
+console.log(obj);
+
+window.onload = () => {
+
+};
+
+const errCSS = {
+	color: 'red',
+	fontSize: '24px'
+};
+</script>
+</head>
+<body>
+	<div id="header"></div>
+</body>
+</html>
