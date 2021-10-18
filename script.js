@@ -15,9 +15,7 @@ $(() => {
     let index = 0;//現在選択中の配列の要素
     let intervalId;
 
-    for(let i = 0; i < currenttext.length; ++i) {
-        $("#container").append('<span class="unit">' + currenttext[i] + '</span>');
-    }
+    for(let i = 0; i < currenttext.length; ++i) $("#container").append('<span class="unit">' + currenttext[i] + '</span>');
 
 // イベントハンドラ
     $("#speed-slider").on("input", () => {
@@ -34,14 +32,12 @@ $(() => {
     function tick() {
         $(".unit").removeClass("now").eq(index).addClass("now");
         ++index;
-        if(index >= currenttext.length) {
-            index = 0;
-        }
+        if(index >= currenttext.length) index = 0;
         //36-39行目をまとめてこう書くこともできます この場合index++では正しくありません
         //if(++index >= currenttext.length) index = 0;
     }
 
-    $("#play").click(() => {
+    $("#play").on('click', () => {
         if(playing) {//再生中→一時停止
             clearInterval(intervalId);
             $("#play").text("再生");
@@ -53,22 +49,14 @@ $(() => {
     });
 
 //最初に戻る
-    $("#init").click(() => {
-        index = 0;
-    });
+    $("#init").on('click', () => { index = 0; });
 
 //テキスト読み込み
-    $("#text").click(() => {
+    $("#text").on('click', () => {
         let text = $("#main-text").val().replace(/\r\n/g, "\n").replace(/\r/g, "\n");// Mac: \r(CR)　Linux: \n(LF)　Windows: \r\n(CR+LF)
-        if(text.length > 0) {
-            currenttext = text.split('\n');
-        } else {
-            currenttext = initialtext;
-        }
+        currenttext = text.length > 0 ? text.split('\n') : initialtext;
         index = 0;
         $("#container").html("");
-        for(let i = 0; i < currenttext.length; ++i) {
-            $("#container").append('<span class="unit">' + currenttext[i] + '</span>');
-        }
+        for(let i = 0; i < currenttext.length; ++i) $("#container").append('<span class="unit">' + currenttext[i] + '</span>');
     });
 });
